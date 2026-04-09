@@ -1,12 +1,11 @@
 fun main() {
     val destination = readln().toInt()
-    var layer = 0
-    while (true) {
-        val cells = 1 + layer * (layer + 1) / 2 * 6
+    var cells = 1
+    for (i in 0..Int.MAX_VALUE) {
+        cells += i * 6
         if (destination <= cells) {
-            println(layer + 1)
+            println(i + 1)
             break
         }
-        layer++
     }
 }

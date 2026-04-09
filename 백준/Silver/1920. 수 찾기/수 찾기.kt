@@ -3,7 +3,7 @@ import java.io.Writer
 fun main() = System.`in`.bufferedReader().use { reader ->
     System.out.bufferedWriter().use { writer ->
         reader.readLine()
-        val numbers = reader.readLine().split(" ").map(String::toInt).toSortedSet()
+        val numbers = reader.readLine().split(" ").map(String::toInt).toHashSet()
         reader.readLine()
         reader.readLine().split(" ")
             .map(String::toInt)

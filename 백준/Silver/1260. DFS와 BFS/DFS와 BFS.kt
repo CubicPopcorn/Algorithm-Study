@@ -31,8 +31,8 @@ fun main() = System.`in`.bufferedReader().use { reader ->
 
         visitedNodes.add(startNode)
         writer.write(startNode.id.toString())
-        var visitingNodes = linkedSetOf<Node>().apply { addAll(startNode.connectedNodes) }
-        var nextNodes = linkedSetOf<Node>()
+        val visitingNodes = linkedSetOf<Node>().apply { addAll(startNode.connectedNodes) }
+        val nextNodes = linkedSetOf<Node>()
         while (visitingNodes.isNotEmpty()) {
             visitingNodes.forEach { node ->
                 visitedNodes.add(node)
@@ -43,8 +43,9 @@ fun main() = System.`in`.bufferedReader().use { reader ->
                     }
                 }
             }
-            visitingNodes = nextNodes
-            nextNodes = linkedSetOf()
+            visitingNodes.clear()
+            visitingNodes.addAll(nextNodes)
+            nextNodes.clear()
         }
     }
 }

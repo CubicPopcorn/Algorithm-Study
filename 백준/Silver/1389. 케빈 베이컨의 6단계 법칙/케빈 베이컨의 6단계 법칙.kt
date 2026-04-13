@@ -12,7 +12,7 @@ fun main() {
     allUsers.forEach { interestedUser ->
         val depthMap = mutableMapOf<User, Int>()
         depthMap[interestedUser] = 0
-        var users = mutableSetOf(*interestedUser.friends.toTypedArray())
+        var users = interestedUser.friends.toMutableSet()
         var nextUsers = mutableSetOf<User>()
         var depth = 1
         while (depthMap.keys.size < userCount) {

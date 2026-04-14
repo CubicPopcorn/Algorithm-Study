@@ -1,20 +1,31 @@
-import java.io.Writer
+fun main() {
+    val n = readln().toInt()
+    val findLength = n * 2 + 1
+    readln()
+    val input = readln()
 
-fun main() = System.`in`.bufferedReader().use { reader ->
-    System.out.bufferedWriter().use { writer ->
-        val n = reader.readLine().toInt()
-        val findingChars = ("I" + "OI".repeat(n)).toList()
-        reader.readLine().toInt()
-        val inputCharList = reader.readLine().toList()
-        var count = 0
-        for (i in 0..inputCharList.lastIndex - (findingChars.size - 1)) {
-            val token = inputCharList.subList(i, i + findingChars.size)
-            if (token == findingChars) count++
+    var count = 0
+    var i = 0
+    while (i <= input.lastIndex - (findLength - 1)) {
+        val match = run {
+            for (j in 0..<findLength) {
+                val correctChar = if (j % 2 == 0) 'I' else 'O'
+                if (input[i + j] != correctChar) return@run false
+            }
+            return@run true
         }
-        writer.writeLine(count)
+        if (match) {
+            count++
+            i += findLength
+            while (i + 1 in input.indices
+                && input[i] == 'O'
+                && input[i + 1] == 'I') {
+                count++
+                i += 2
+            }
+        } else {
+            i++
+        }
     }
-}
-
-fun Writer.writeLine(obj: Any?) {
-    this.appendLine(obj?.toString())
+    println(count)
 }
